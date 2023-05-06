@@ -30,7 +30,7 @@ const userSchema = new Schema(
     status: {
       type: String,
       default: "Offline",
-      enum: ["Offline", "Online"],
+      enum: ["Offline", "Online","Blocked"],
     },
     phone: String,
     age: Number,
@@ -67,6 +67,9 @@ const userSchema = new Schema(
       type: String,
       default: "system",
       enum: ["system", "facebook","Google" ,"github"]
+    },
+    socketId:{
+      type: String,
     }
    
   },

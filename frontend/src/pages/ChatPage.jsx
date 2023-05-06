@@ -39,6 +39,7 @@ const config={
 const ChatPage = () => {
   const { user } = useSelector((state) => ({ ...state.auth }));
   const socket = useRef();
+  // console.log(socket.current.id);
   const [contacts, setContacts] = useState([]);
   const [currentChat, setCurrentChat] = useState(undefined);
   useEffect( () => {
@@ -52,7 +53,7 @@ const ChatPage = () => {
       FetchAllUser();
  }
         
-  },[user]);
+  },[socket?.current?.id ,user]);
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
@@ -60,6 +61,13 @@ const ChatPage = () => {
     if (user) {
       socket.current = io(host);
       socket.current.emit("add-user", user._id);
+      socket.current.emit("updatedSocketId",{token:`Bearer ${localStorage.getItem("token")}`});
+      socket.current.on("authenticationError", data => {
+
+     
+          console.log(data);
+      
+      })
     }
   }, [user]);
   return (

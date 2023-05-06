@@ -26,5 +26,5 @@ export const facebookSignIn = (result) => API.post("/auth/facebookSignIn", resul
 
 export const GithubSignIn = (result) => API.post("/auth/GithubSignIn", result);
 
-// export const allUserStored = () => API.get("/user");
+export const getAlluser = () => API.get("/user");
 
